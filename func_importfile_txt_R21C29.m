@@ -1,18 +1,18 @@
 function annual1979 = func_importfile_txt_R21C29(filename, startRow, endRow)
-%IMPORTFILE ½«ÎÄ±¾ÎÄ¼şÖĞµÄÊıÖµÊı¾İ×÷Îª¾ØÕóµ¼Èë¡£
-%   ANNUAL1979 = IMPORTFILE(FILENAME) ¶ÁÈ¡ÎÄ±¾ÎÄ¼ş FILENAME ÖĞÄ¬ÈÏÑ¡¶¨·¶Î§µÄÊı¾İ¡£
+%IMPORTFILE å°†æ–‡æœ¬æ–‡ä»¶ä¸­çš„æ•°å€¼æ•°æ®ä½œä¸ºçŸ©é˜µå¯¼å…¥ã€‚
+%   ANNUAL1979 = IMPORTFILE(FILENAME) è¯»å–æ–‡æœ¬æ–‡ä»¶ FILENAME ä¸­é»˜è®¤é€‰å®šèŒƒå›´çš„æ•°æ®ã€‚
 %
-%   ANNUAL1979 = IMPORTFILE(FILENAME, STARTROW, ENDROW) ¶ÁÈ¡ÎÄ±¾ÎÄ¼ş FILENAME µÄ
-%   STARTROW ĞĞµ½ ENDROW ĞĞÖĞµÄÊı¾İ¡£
+%   ANNUAL1979 = IMPORTFILE(FILENAME, STARTROW, ENDROW) è¯»å–æ–‡æœ¬æ–‡ä»¶ FILENAME çš„
+%   STARTROW è¡Œåˆ° ENDROW è¡Œä¸­çš„æ•°æ®ã€‚
 %
 % Example:
 %   annual1979 = importfile('annual_1979.txt', 1, 27);
 %
-%    ÁíÇë²ÎÔÄ TEXTSCAN¡£
+%    å¦è¯·å‚é˜… TEXTSCANã€‚
 
-% ÓÉ MATLAB ×Ô¶¯Éú³ÉÓÚ 2018/10/28 09:52:22
+% ç”± MATLAB è‡ªåŠ¨ç”Ÿæˆäº 2018/10/28 09:52:22
 
-%% ³õÊ¼»¯±äÁ¿¡£
+%% åˆå§‹åŒ–å˜é‡ã€‚
 %delimiter = ' ';
 delimiter = '\t';
 if nargin<=2
@@ -20,15 +20,15 @@ if nargin<=2
     endRow = inf;
 end
 
-%% ½«Êı¾İÁĞ×÷Îª×Ö·û´®¶ÁÈ¡:
-% ÓĞ¹ØÏêÏ¸ĞÅÏ¢£¬Çë²ÎÔÄ TEXTSCAN ÎÄµµ¡£
+%% å°†æ•°æ®åˆ—ä½œä¸ºå­—ç¬¦ä¸²è¯»å–:
+% æœ‰å…³è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜… TEXTSCAN æ–‡æ¡£ã€‚
 formatSpec = '%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%[^\n\r]';
 
-%% ´ò¿ªÎÄ±¾ÎÄ¼ş¡£
+%% æ‰“å¼€æ–‡æœ¬æ–‡ä»¶ã€‚
 fileID = fopen(filename,'r');
 
-%% ¸ù¾İ¸ñÊ½×Ö·û´®¶ÁÈ¡Êı¾İÁĞ¡£
-% ¸Ãµ÷ÓÃ»ùÓÚÉú³É´Ë´úÂëËùÓÃµÄÎÄ¼şµÄ½á¹¹¡£Èç¹ûÆäËûÎÄ¼ş³öÏÖ´íÎó£¬Çë³¢ÊÔÍ¨¹ıµ¼Èë¹¤¾ßÖØĞÂÉú³É´úÂë¡£
+%% æ ¹æ®æ ¼å¼å­—ç¬¦ä¸²è¯»å–æ•°æ®åˆ—ã€‚
+% è¯¥è°ƒç”¨åŸºäºç”Ÿæˆæ­¤ä»£ç æ‰€ç”¨çš„æ–‡ä»¶çš„ç»“æ„ã€‚å¦‚æœå…¶ä»–æ–‡ä»¶å‡ºç°é”™è¯¯ï¼Œè¯·å°è¯•é€šè¿‡å¯¼å…¥å·¥å…·é‡æ–°ç”Ÿæˆä»£ç ã€‚
 dataArray = textscan(fileID, formatSpec, endRow(1)-startRow(1)+1, 'Delimiter', delimiter, 'MultipleDelimsAsOne', true, 'HeaderLines', startRow(1)-1, 'ReturnOnError', false);
 for block=2:length(startRow)
     frewind(fileID);
@@ -38,11 +38,11 @@ for block=2:length(startRow)
     end
 end
 
-%% ¹Ø±ÕÎÄ±¾ÎÄ¼ş¡£
+%% å…³é—­æ–‡æœ¬æ–‡ä»¶ã€‚
 fclose(fileID);
 
-%% ½«°üº¬ÊıÖµ×Ö·û´®µÄÁĞÄÚÈİ×ª»»ÎªÊıÖµ¡£
-% ½«·ÇÊıÖµ×Ö·û´®Ìæ»»Îª NaN¡£
+%% å°†åŒ…å«æ•°å€¼å­—ç¬¦ä¸²çš„åˆ—å†…å®¹è½¬æ¢ä¸ºæ•°å€¼ã€‚
+% å°†éæ•°å€¼å­—ç¬¦ä¸²æ›¿æ¢ä¸º NaNã€‚
 raw = repmat({''},length(dataArray{1}),length(dataArray)-1);
 for col=1:length(dataArray)-1
     raw(1:length(dataArray{col}),col) = dataArray{col};
@@ -50,16 +50,16 @@ end
 numericData = NaN(size(dataArray{1},1),size(dataArray,2));
 
 for col=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
-    % ½«ÊäÈëÔª°ûÊı×éÖĞµÄ×Ö·û´®×ª»»ÎªÊıÖµ¡£ÒÑ½«·ÇÊıÖµ×Ö·û´®Ìæ»»Îª NaN¡£
+    % å°†è¾“å…¥å…ƒèƒæ•°ç»„ä¸­çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•°å€¼ã€‚å·²å°†éæ•°å€¼å­—ç¬¦ä¸²æ›¿æ¢ä¸º NaNã€‚
     rawData = dataArray{col};
     for row=1:size(rawData, 1);
-        % ´´½¨ÕıÔò±í´ïÊ½ÒÔ¼ì²â²¢É¾³ı·ÇÊıÖµÇ°×ººÍºó×º¡£
+        % åˆ›å»ºæ­£åˆ™è¡¨è¾¾å¼ä»¥æ£€æµ‹å¹¶åˆ é™¤éæ•°å€¼å‰ç¼€å’Œåç¼€ã€‚
         regexstr = '(?<prefix>.*?)(?<numbers>([-]*(\d+[\,]*)+[\.]{0,1}\d*[eEdD]{0,1}[-+]*\d*[i]{0,1})|([-]*(\d+[\,]*)*[\.]{1,1}\d+[eEdD]{0,1}[-+]*\d*[i]{0,1}))(?<suffix>.*)';
         try
             result = regexp(rawData{row}, regexstr, 'names');
             numbers = result.numbers;
             
-            % ÔÚ·ÇÇ§Î»Î»ÖÃÖĞ¼ì²âµ½¶ººÅ¡£
+            % åœ¨éåƒä½ä½ç½®ä¸­æ£€æµ‹åˆ°é€—å·ã€‚
             invalidThousandsSeparator = false;
             if any(numbers==',');
                 thousandsRegExp = '^\d+?(\,\d{3})*\.{0,1}\d*$';
@@ -68,7 +68,7 @@ for col=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
                     invalidThousandsSeparator = true;
                 end
             end
-            % ½«ÊıÖµ×Ö·û´®×ª»»ÎªÊıÖµ¡£
+            % å°†æ•°å€¼å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•°å€¼ã€‚
             if ~invalidThousandsSeparator;
                 numbers = textscan(strrep(numbers, ',', ''), '%f');
                 numericData(row, col) = numbers{1};
@@ -80,9 +80,9 @@ for col=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
 end
 
 
-%% ½«·ÇÊıÖµÔª°ûÌæ»»Îª NaN
-R = cellfun(@(x) ~isnumeric(x) && ~islogical(x),raw); % ²éÕÒ·ÇÊıÖµÔª°û
-raw(R) = {NaN}; % Ìæ»»·ÇÊıÖµÔª°û
+%% å°†éæ•°å€¼å…ƒèƒæ›¿æ¢ä¸º NaN
+R = cellfun(@(x) ~isnumeric(x) && ~islogical(x),raw); % æŸ¥æ‰¾éæ•°å€¼å…ƒèƒ
+raw(R) = {NaN}; % æ›¿æ¢éæ•°å€¼å…ƒèƒ
 
-%% ´´½¨Êä³ö±äÁ¿
+%% åˆ›å»ºè¾“å‡ºå˜é‡
 annual1979 = raw;
